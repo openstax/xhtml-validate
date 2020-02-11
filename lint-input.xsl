@@ -7,14 +7,6 @@
 
 <!-- Does not work: <xsl:output method="xhtml"/> -->
 
-<!-- IFrames are treated weirdly. If they have a comment inside, Chromium will escape the comment out -->
-<xsl:template match="h:iframe[not(node())]">
-  <xsl:copy>
-    <xsl:apply-templates select="@*"/>
-    <xsl:text> </xsl:text>
-  </xsl:copy>
-</xsl:template>
-
 <!-- Ensure non-selfclosing elements without children always have a CLOSE TAG -->
 <xsl:template match="*[not(node())][not(
       self::h:area or 
@@ -69,6 +61,13 @@
   </xsl:copy>
 </xsl:template>
 
+<!-- IFrames are treated weirdly. If they have a comment inside, Chromium will escape the comment out -->
+<xsl:template match="h:iframe">
+  <xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:text> </xsl:text>
+  </xsl:copy>
+</xsl:template>
 
 <!-- Identity transform -->
 <xsl:template match="@*|node()">
