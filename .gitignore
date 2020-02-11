@@ -2,3 +2,9 @@ canonical.in.xhtml
 canonical.out.xhtml
 temp-file.html
 temp-file.out.xhtml
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build

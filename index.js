@@ -4,6 +4,10 @@ const path = require('path')
 const bunyan = require('bunyan')
 const BunyanFormat = require('bunyan-format')
 
+const name = process.argv[2]
+const inFile = path.resolve(`./${name}.html`)
+const outFile = path.resolve(`./${name}.out.xhtml`)
+
 const PAGE_LOAD_TIME = 10 * 60 * 1000
 const STATUS_CODE = {
   OK: 0,
@@ -15,10 +19,6 @@ const log = bunyan.createLogger({
   level: process.env.LOG_LEVEL || 'debug',
   stream: new BunyanFormat({outputMode: process.env.LOG_FORMAT || 'short'})
 })
-
-const name = process.argv[2]
-const inFile = path.resolve(`./${name}.html`)
-const outFile = path.resolve(`./${name}.out.xhtml`)
 
 const url = `file://${inFile}`;
 
