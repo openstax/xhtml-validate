@@ -11,7 +11,8 @@ f_out="./canonical.out.xhtml"
 [[ -f "${f_in}" ]] && rm "${f_in}"
 [[ -f "${f_out}" ]] && rm "${f_out}"
 
-xsltproc lint-input.xsl "${input_file}" > "${f_temp_in}"
+# xsltproc lint-input.xsl "${input_file}" > "${f_temp_in}"
+saxon "-s:${input_file}" -xsl:./lint-input.xsl "-o:${f_temp_in}"
 
 node index.js "${f_temp_base}"
 
